@@ -6,7 +6,8 @@
 @implicitFieldConstructor = @{FieldConstructor(twitterBootstrap3.f)}
 
 @scripts = {
-    <script type="text/javascript" src='@routes.Assets.at("javascripts/admin/restaurant.edit.js")' ></script>
+    @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
+                      module = routes.Assets.at("/javascripts/admin/restaurant.edit").url)
 }
 
 @main("Restaurant", scripts) {

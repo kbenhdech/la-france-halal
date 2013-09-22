@@ -46,6 +46,9 @@ object ApplicationBuild extends Build {
     resolvers := Seq(
       Resolver.url("RATP DA artifactory ivy", url("http://dr.noisy.ratp:8081/artifactory/releases-ivy/"))(Resolver.ivyStylePatterns)
     )
+
+    // require.js
+    , requireJs += "admin/restaurant.list.js"
   )
 
 }
