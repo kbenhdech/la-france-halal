@@ -4,6 +4,7 @@ $ ->
   $("#restaurantTable").dataTable
     aaSorting: [[1, "asc"]]
     bPaginate: true
+    sPaginationType: "bootstrap"
     bLengthChange: false
     bFilter: true
     bSort: true

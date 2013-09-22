@@ -6,7 +6,7 @@
     "sInfoEmpty": "Affichage de l'élément 0 à 0 sur 0 éléments",
     "sInfoFiltered": "(filtré de _MAX_ éléments au total)",
     "sInfoPostFix": "",
-    "sSearch": "Filtrer:",
+    "sSearch": "",
     "sUrl": "",
     "oPaginate": {
         "sFirst":    "Premier",

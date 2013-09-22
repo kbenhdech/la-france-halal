@@ -4,8 +4,8 @@
 
 @scripts = {
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.dataTables.min.js"))' ></script>
-    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("DT_bootstrap.js"))' ></script>
     <script type="text/javascript" src='@routes.Assets.at("javascripts/admin/restaurant.list.js")' ></script>
+    <script type="text/javascript" src='@routes.Assets.at("libs/dataTables/js/DT_bootstrap.js")' ></script>
 }
 
 @stylesheets = {
@@ -44,8 +44,6 @@
             </tbody>
         </table>
     </div>
-    <br />
-    <br />
 
     <div class="row">
         <a href="@controllers.admin.routes.Restaurants.create()"

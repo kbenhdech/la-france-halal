@@ -29,8 +29,8 @@ $.extend( $.fn.dataTableExt.oPagination, {
 				}
 			};
 
-			$(nPaging).addClass('pagination').append(
-				'<ul>'+
+			$(nPaging).append(
+				'<ul class="pagination">'+
 					'<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
 					'<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
 				'</ul>'
@@ -90,6 +90,8 @@ $.extend( $.fn.dataTableExt.oPagination, {
 					$('li:last', an[i]).removeClass('disabled');
 				}
 			}
+
+			$(".dataTables_filter input").addClass("form-control");
 		}
 	}
 } );
