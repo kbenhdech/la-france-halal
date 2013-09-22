@@ -5,6 +5,14 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+# Restaurants
+GET           /admin/restaurant                                                            controllers.admin.Restaurants.list()
+GET           /admin/restaurant/new                                                        controllers.admin.Restaurants.create()
+POST          /admin/restaurant/:id/remove                                                 controllers.admin.Restaurants.remove(id: Long)
+GET           /admin/restaurant/:id/edit                                                   controllers.admin.Restaurants.edit(id: Long)
+POST          /admin/restaurant/:id/edit                                                   controllers.admin.Restaurants.update(id: Long)
+GET           /admin/restaurant/:id                                                        controllers.admin.Restaurants.show(id: Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 

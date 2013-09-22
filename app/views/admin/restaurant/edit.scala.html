@@ -1,0 +1,26 @@
+@(id: Long, restaurantForm: Form[models.Restaurant])
+
+@import helper._
+@import views.html.helper._
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrap3.f)}
+
+@main("Restaurant") {
+    <h1>@if(id==0L){ Création d'un nouveau restaurant } else { Modification d'un restaurant existant (@id) }</h1>
+
+    @helper.form(action = controllers.admin.routes.Restaurants.update(id), 'class -> "form-horizontal") {
+
+        <input type="hidden" name="id" id="id" value="@id">
+
+        <fieldset id="restaurant">
+            @inputText(restaurantForm("nom"),
+                '_showConstraints -> false,
+                '_class -> "")
+        </fieldset>
+
+        <div class="actions">
+            <input type="submit" class="btn btn-primary" value="Valider">
+            <a href="@controllers.admin.routes.Restaurants.list()" class="btn btn-warning">Annuler</a>
+        </div>
+    }
+}

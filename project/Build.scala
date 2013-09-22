@@ -13,7 +13,7 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
 
-    // Selenium
+    // selenium
     "org.seleniumhq.selenium" % "selenium-java" % "2.35.0" % "test",
 
     /*****************************************************************
@@ -22,21 +22,30 @@ object ApplicationBuild extends Build {
      *
      ****************************************************************/
 
-    // WebJars
+    // webJars
     "org.webjars" % "webjars-play" % "2.1.0-1",
 
-    // Bootstrap
+    // twitter bootstrap
     "org.webjars" % "bootstrap" % "3.0.0",
 
-    // Jquery
+    // datatables twitter bootstrap styles
+    "org.webjars" % "datatables-bootstrap" % "2-20120201-1",
+
+    // jquery
     "org.webjars" % "jquery" % "2.0.3",
 
-    // Datatables
-    "org.webjars" % "datatables" % "1.9.4-2"
+    // datatables
+    "org.webjars" % "datatables" % "1.9.4-2",
+
+    // fontAwesome
+    "org.webjars" % "font-awesome" % "3.2.1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here
+    resolvers := Seq(
+      Resolver.url("RATP DA artifactory ivy", url("http://dr.noisy.ratp:8081/artifactory/releases-ivy/"))(Resolver.ivyStylePatterns)
+    )
   )
 
 }

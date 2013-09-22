@@ -1,0 +1,18 @@
+@(restaurant: models.Restaurant)
+
+@import helper._
+@import views.html.helper._
+
+@main("Restaurant : " + restaurant.nom) {
+    <h1>Restaurant - @restaurant.nom</h1>
+
+    <dl class="row boxed span12 dl-horizontal">
+        <dt>Nom</dt>
+        <dd class="clearfix">@restaurant.nom</dd>
+    </dl>
+
+    <div class="actions">
+        <a href="@controllers.admin.routes.Restaurants.list()" class="btn btn-warning">Retour</a>
+    </div>
+
+}
