@@ -16,12 +16,12 @@ import static play.data.validation.Constraints.Required;
  * @author Karim BENHDECH
  */
 @Entity
-public class Restaurant extends AppModel {
+public class Restaurant extends AppHistoryModel {
 
     /**
      * Finder.
      */
-    private static final Model.Finder<Long, Restaurant> find = new Model.Finder<Long, Restaurant>(Long.class, Restaurant.class);
+    private static final Model.Finder<Long, Restaurant> FIND = new Model.Finder<Long, Restaurant>(Long.class, Restaurant.class);
     /**
      * Nom du restaurant.
      */
@@ -90,7 +90,7 @@ public class Restaurant extends AppModel {
      * @return Un restaurant.
      */
     public static Restaurant findById(final Long restaurantId) {
-        return find
+        return FIND
                 .where()
                 .eq("id", restaurantId)
                 .findUnique();
@@ -102,7 +102,7 @@ public class Restaurant extends AppModel {
      * @return La liste des restaurants
      */
     public static List<Restaurant> findAll() {
-        return find.where().findList();
+        return FIND.where().findList();
     }
 
     /**
