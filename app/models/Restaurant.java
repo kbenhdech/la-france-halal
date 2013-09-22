@@ -1,10 +1,12 @@
 package models;
 
+import play.data.format.Formats;
 import play.db.ebean.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 import java.util.List;
 
 import static play.data.validation.Constraints.Required;
@@ -80,6 +82,11 @@ public class Restaurant extends Model {
      */
     @Required
     public boolean isAmenagmentHandicapped = false;
+    /**
+     * Dernière date de vérification de l'existance du restaurant.
+     */
+    @Formats.DateTime(pattern = "dd/MM/yyyy")
+    public Date lastVerification;
 
     /**
      * Recherche un restaurant par son identifiant.

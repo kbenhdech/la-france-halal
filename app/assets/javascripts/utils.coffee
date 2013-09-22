@@ -8,4 +8,15 @@ define [], () ->
       charNumber = $(id).val().length
       $('#charNumber').text(charNumber)
       $(id).keyup ->
-        $('#charNumber').text(this.value.length);
+        $('#charNumber').text(this.value.length)
+
+    @datetimepickerDay = (id) ->
+      $(id).datetimepicker
+        format : 'dd/mm/yyyy'
+        # daysOfWeekDisabled: [0,6]
+        startView: 2
+        minView: 2
+        maxView: 3
+        language: "fr"
+        weekStart: 1
+        autoclose: true

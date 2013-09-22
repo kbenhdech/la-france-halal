@@ -16,6 +16,7 @@ create table restaurant (
   is_prayer_room            boolean,
   is_establishment_certified boolean,
   is_amenagment_handicapped boolean,
+  last_verification         timestamp,
   constraint pk_restaurant primary key (id))
 ;
 

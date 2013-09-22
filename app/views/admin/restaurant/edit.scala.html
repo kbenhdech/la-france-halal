@@ -6,11 +6,17 @@
 @implicitFieldConstructor = @{FieldConstructor(twitterBootstrap3.f)}
 
 @scripts = {
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.min.js"))' ></script>
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.fr.js"))' ></script>
     @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
                       module = routes.Assets.at("/javascripts/admin/restaurant.edit").url)
 }
 
-@main("Restaurant", scripts) {
+@stylesheets = {
+    <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("datetimepicker.css"))'>
+}
+
+@main("Restaurant", scripts, stylesheets) {
     <h1>@if(id==0L){ Création d'un nouveau restaurant } else { Modification d'un restaurant existant (@id) }</h1>
 
     @helper.form(action = controllers.admin.routes.Restaurants.update(id), 'class -> "form-horizontal") {
@@ -29,7 +35,7 @@
         </fieldset>
 
         <fieldset>
-                <legend>Données secondaires</legend>
+            <legend>Données secondaires</legend>
             @checkbox(restaurantForm("isCreditCardAccepted"),
                 '_showConstraints -> false,
                 '_label -> Messages("creditCard"))
@@ -61,6 +67,12 @@
             @checkbox(restaurantForm("isAmenagmentHandicapped"),
                 '_showConstraints -> false,
                 '_label -> Messages("amenagmentHandicapped"))
+        </fieldset>
+
+        <fieldset>
+            <legend>Dates</legend>
+            @inputText(restaurantForm("lastVerification"),
+                '_showConstraints -> false)
         </fieldset>
 
         <div class="actions">

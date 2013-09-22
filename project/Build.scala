@@ -38,7 +38,10 @@ object ApplicationBuild extends Build {
     "org.webjars" % "datatables" % "1.9.4-2",
 
     // fontAwesome
-    "org.webjars" % "font-awesome" % "3.2.1"
+    "org.webjars" % "font-awesome" % "3.2.1",
+
+    // Bootstrap Date Timepicker
+    "org.webjars" % "bootstrap-datetimepicker" % "6aa746736d"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

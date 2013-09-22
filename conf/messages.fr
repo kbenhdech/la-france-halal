@@ -9,3 +9,4 @@ onlineBooking=Réservation en ligne
 prayerRoom=Salle de prière
 establishmentCertified=Viande certifié
 amenagmentHandicapped=Aménagement pour handicapé
+lastVerification=Dernière vérification
