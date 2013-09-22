@@ -28,7 +28,7 @@
                 <tr id="@restaurant.nom">
                     <td>@restaurant.nom</td>
                     <td>
-                        @form(controllers.admin.routes.Restaurants.remove(restaurant.id)) {
+                        @form(controllers.admin.routes.Restaurants.remove(restaurant.id), 'class -> "confirm-delete") {
                         <a href="@controllers.admin.routes.Restaurants.edit(restaurant.id)"
                            class="btn btn-primary btn-sm update"
                            title="Editer le restaurant '@restaurant.nom'">

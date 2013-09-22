@@ -80,7 +80,7 @@ public class Restaurants extends Controller {
             updatedForm.get().update(id);
         }
         Controller.flash("success", "Sauvegarde effectuée.");
-        return list();
+        return redirect(controllers.admin.routes.Restaurants.list());
     }
 
     /**
@@ -98,7 +98,7 @@ public class Restaurants extends Controller {
 
         model.delete();
         Controller.flash("success", "Suppression effectuée.");
-        return list();
+        return redirect(controllers.admin.routes.Restaurants.list());
     }
 
     /**
