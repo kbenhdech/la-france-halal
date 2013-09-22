@@ -6,9 +6,29 @@
 @main("Restaurant : " + restaurant.nom) {
     <h1>Restaurant - @restaurant.nom</h1>
 
-    <dl class="row boxed span12 dl-horizontal">
-        <dt>Nom</dt>
+    <dl class="row dl-horizontal">
+        <dt>@Messages("nom")</dt>
         <dd class="clearfix">@restaurant.nom</dd>
+        <dt>@Messages("webSite")</dt>
+        <dd class="clearfix">@display(restaurant.webSite)</dd>
+        <dt>@Messages("creditCard")</dt>
+        <dd class="clearfix">@display(restaurant.isCreditCardAccepted)</dd>
+        <dt>@Messages("restaurantTicket")</dt>
+        <dd class="clearfix">@display(restaurant.isRestaurantTicketAccepted)</dd>
+        <dt>@Messages("delivery")</dt>
+        <dd class="clearfix">@display(restaurant.isDeliveryPossible)</dd>
+        <dt>@Messages("takeaway")</dt>
+        <dd class="clearfix">@display(restaurant.isTakeaway)</dd>
+        <dt>@Messages("onlineBooking")</dt>
+        <dd class="clearfix">@display(restaurant.isOnlineBooking)</dd>
+        <dt>@Messages("prayerRoom")</dt>
+        <dd class="clearfix">@display(restaurant.isPrayerRoom)</dd>
+        <dt>@Messages("establishmentCertified")</dt>
+        <dd class="clearfix">@display(restaurant.isEstablishmentCertified)</dd>
+        <dt>@Messages("amenagmentHandicapped")</dt>
+        <dd class="clearfix">@display(restaurant.isAmenagmentHandicapped)</dd>
+        <dt>@Messages("description")</dt>
+        <dd class="clearfix">@display(restaurant.description)</dd>
     </dl>
 
     <div class="actions">

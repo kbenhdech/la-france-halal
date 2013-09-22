@@ -1,0 +1,11 @@
+nom=Nom
+webSite=Site internet
+description=Description
+creditCard=Carte de crédit
+restaurantTicket=Ticket restaurant
+delivery=Livraison
+takeaway=Vente à emporter
+onlineBooking=Réservation en ligne
+prayerRoom=Salle de prière
+establishmentCertified=Viande certifié
+amenagmentHandicapped=Aménagement pour handicapé

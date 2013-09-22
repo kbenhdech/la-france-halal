@@ -5,17 +5,65 @@
 
 @implicitFieldConstructor = @{FieldConstructor(twitterBootstrap3.f)}
 
-@main("Restaurant") {
+@scripts = {
+    <script type="text/javascript" src='@routes.Assets.at("javascripts/admin/restaurant.edit.js")' ></script>
+}
+
+@main("Restaurant", scripts) {
     <h1>@if(id==0L){ Création d'un nouveau restaurant } else { Modification d'un restaurant existant (@id) }</h1>
 
     @helper.form(action = controllers.admin.routes.Restaurants.update(id), 'class -> "form-horizontal") {
 
         <input type="hidden" name="id" id="id" value="@id">
 
-        <fieldset id="restaurant">
+        <fieldset>
+            <legend>Données primaires</legend>
             @inputText(restaurantForm("nom"),
+                '_showConstraints -> false)
+            @inputText(restaurantForm("webSite"),
+                '_showConstraints -> false)
+            @textarea(restaurantForm("description"),
                 '_showConstraints -> false,
-                '_class -> "")
+                'rows -> "6")
+            <div class="row-fluid"><p class="help-block">
+                <span id='charNumber'>0</span>
+                caractères (Nombre maximal de caractères: 500)</p>
+            </div>
+        </fieldset>
+
+        <fieldset>
+                <legend>Données secondaires</legend>
+            @checkbox(restaurantForm("isCreditCardAccepted"),
+                '_showConstraints -> false,
+                '_label -> Messages("creditCard"))
+
+            @checkbox(restaurantForm("isRestaurantTicketAccepted"),
+                '_showConstraints -> false,
+                '_label -> Messages("restaurantTicket"))
+
+            @checkbox(restaurantForm("isDeliveryPossible"),
+                '_showConstraints -> false,
+                '_label -> Messages("delivery"))
+
+            @checkbox(restaurantForm("isTakeaway"),
+                '_showConstraints -> false,
+                '_label -> Messages("takeaway"))
+
+            @checkbox(restaurantForm("isOnlineBooking"),
+                '_showConstraints -> false,
+                '_label -> Messages("onlineBooking"))
+
+            @checkbox(restaurantForm("isPrayerRoom"),
+                '_showConstraints -> false,
+                '_label -> Messages("prayerRoom"))
+
+            @checkbox(restaurantForm("isEstablishmentCertified"),
+                '_showConstraints -> false,
+                '_label -> Messages("establishmentCertified"))
+
+            @checkbox(restaurantForm("isAmenagmentHandicapped"),
+                '_showConstraints -> false,
+                '_label -> Messages("amenagmentHandicapped"))
         </fieldset>
 
         <div class="actions">

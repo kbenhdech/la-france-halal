@@ -12,7 +12,7 @@
         @if(elements.field.constraints.find(_._1 == "constraint.required").nonEmpty){ * }
     </label>
     <div class="col-lg-10">
-        <input class="form-control" id="@elements.field.id" name="@elements.field.name" />
+        @elements.input
     </div>
     <p class="help-block">@elements.infos(elements.lang).mkString(", ")</p>
     @if(elements.hasErrors) {
