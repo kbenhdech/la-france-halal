@@ -5,7 +5,6 @@ import play.db.ebean.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.Date;
 import java.util.List;
 
@@ -17,17 +16,12 @@ import static play.data.validation.Constraints.Required;
  * @author Karim BENHDECH
  */
 @Entity
-public class Restaurant extends Model {
+public class Restaurant extends AppModel {
 
     /**
      * Finder.
      */
     private static final Model.Finder<Long, Restaurant> find = new Model.Finder<Long, Restaurant>(Long.class, Restaurant.class);
-    /**
-     * Identifiant.
-     */
-    @Id
-    public Long id;
     /**
      * Nom du restaurant.
      */
@@ -52,7 +46,8 @@ public class Restaurant extends Model {
      */
     @Required
     public boolean isRestaurantTicketAccepted = false;
-    /**                                       <br />
+    /**
+     * <br />
      * La livraison à domicile est-elle disponible ?
      */
     @Required
