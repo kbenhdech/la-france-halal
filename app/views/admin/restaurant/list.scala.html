@@ -25,16 +25,16 @@
             </thead>
             <tbody>
             @for( restaurant <- restaurants){
-                <tr id="@restaurant.nom">
-                    <td>@restaurant.nom</td>
+                <tr id="@restaurant.name">
+                    <td>@restaurant.name</td>
                     <td>
                         @form(controllers.admin.routes.Restaurants.remove(restaurant.id), 'class -> "confirm-delete") {
                         <a href="@controllers.admin.routes.Restaurants.edit(restaurant.id)"
                            class="btn btn-primary btn-sm update"
-                           title="Editer le restaurant '@restaurant.nom'">
+                           title="Editer le restaurant '@restaurant.name'">
                             <i class="icon-pencil icon-white"></i>
                         </a>
-                        <button type="submit" class="btn btn-danger btn-sm delete" title="Supprimer le restaurant '@restaurant.nom'">
+                        <button type="submit" class="btn btn-danger btn-sm delete" title="Supprimer le restaurant '@restaurant.name'">
                             <i class="icon-trash icon-white"></i>
                         </button>
                         }

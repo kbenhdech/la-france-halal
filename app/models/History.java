@@ -48,7 +48,7 @@ public class History extends AppModel {
     /**
      * Constructeur.
      *
-     * @param tableName         le nom de la table
+     * @param tableName         le name de la table
      * @param tableOperatioType l'opération sur la table
      * @param lineKey           l'identifiant de la ligne modifiée
      * @param lineValue         la valeur de la ligne modifiée (Json)

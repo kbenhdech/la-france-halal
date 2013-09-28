@@ -16,10 +16,13 @@ object ApplicationBuild extends Build {
     // selenium
     "org.seleniumhq.selenium" % "selenium-java" % "2.35.0" % "test",
 
+    // superCsv
+    "net.sf.supercsv" % "super-csv" % "2.1.0",
+
     /*****************************************************************
      *
      *            Webjars
-     *
+     *                                                 spin off
      ****************************************************************/
 
     // webJars
@@ -46,12 +49,15 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here
-    resolvers := Seq(
-      Resolver.url("RATP DA artifactory ivy", url("http://dr.noisy.ratp:8081/artifactory/releases-ivy/"))(Resolver.ivyStylePatterns)
-    )
+
 
     // require.js
-    , requireJs += "admin/restaurant.list.js"
+    requireJs += "admin/restaurant.list.js"
+
+    // debug in test
+    //, Keys.fork in (Test) := true
+    //, javaOptions in (Test) += "-Xdebug"
+    //, javaOptions in (Test) += "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9998"
   )
 
 }

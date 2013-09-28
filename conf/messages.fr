@@ -1,4 +1,4 @@
-nom=Nom
+name=Nom
 webSite=Site internet
 description=Description
 creditCard=Carte de crédit

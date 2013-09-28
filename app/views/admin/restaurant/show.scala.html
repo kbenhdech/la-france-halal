@@ -3,12 +3,12 @@
 @import helper._
 @import views.html.helper._
 
-@main("Restaurant : " + restaurant.nom) {
-    <h1>Restaurant - @restaurant.nom</h1>
+@main("Restaurant : " + restaurant.name) {
+    <h1>Restaurant - @restaurant.name</h1>
 
     <dl class="row dl-horizontal">
-        <dt>@Messages("nom")</dt>
-        <dd class="clearfix">@restaurant.nom</dd>
+        <dt>@Messages("name")</dt>
+        <dd class="clearfix">@restaurant.name</dd>
         <dt>@Messages("webSite")</dt>
         <dd class="clearfix">@display(restaurant.webSite)</dd>
         <dt>@Messages("creditCard")</dt>

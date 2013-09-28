@@ -3,6 +3,28 @@
 
 # --- !Ups
 
+create table city (
+  id                        bigint not null,
+  insee_code                varchar(255),
+  zip_code                  varchar(255),
+  name                      varchar(255),
+  region_id                 bigint,
+  department_id             bigint,
+  created_at                timestamp not null,
+  updated_at                timestamp not null,
+  constraint pk_city primary key (id))
+;
+
+create table department (
+  id                        bigint not null,
+  code                      varchar(255),
+  name                      varchar(255),
+  region_id                 bigint,
+  created_at                timestamp not null,
+  updated_at                timestamp not null,
+  constraint pk_department primary key (id))
+;
+
 create table history (
   id                        bigint not null,
   table_name                varchar(10),
@@ -16,9 +38,18 @@ create table history (
   constraint pk_history primary key (id))
 ;
 
+create table region (
+  id                        bigint not null,
+  code                      varchar(255),
+  name                      varchar(255),
+  created_at                timestamp not null,
+  updated_at                timestamp not null,
+  constraint pk_region primary key (id))
+;
+
 create table restaurant (
   id                        bigint not null,
-  nom                       varchar(255),
+  name                      varchar(255),
   web_site                  varchar(255),
   description               varchar(500),
   is_credit_card_accepted   boolean,
@@ -35,10 +66,22 @@ create table restaurant (
   constraint pk_restaurant primary key (id))
 ;
 
+create sequence city_seq;
+
+create sequence department_seq;
+
 create sequence history_seq;
+
+create sequence region_seq;
 
 create sequence restaurant_seq;
 
+alter table city add constraint fk_city_region_1 foreign key (region_id) references region (id) on delete restrict on update restrict;
+create index ix_city_region_1 on city (region_id);
+alter table city add constraint fk_city_department_2 foreign key (department_id) references department (id) on delete restrict on update restrict;
+create index ix_city_department_2 on city (department_id);
+alter table department add constraint fk_department_region_3 foreign key (region_id) references region (id) on delete restrict on update restrict;
+create index ix_department_region_3 on department (region_id);
 
 
 
@@ -46,13 +89,25 @@ create sequence restaurant_seq;
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists city;
+
+drop table if exists department;
+
 drop table if exists history;
+
+drop table if exists region;
 
 drop table if exists restaurant;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
+drop sequence if exists city_seq;
+
+drop sequence if exists department_seq;
+
 drop sequence if exists history_seq;
+
+drop sequence if exists region_seq;
 
 drop sequence if exists restaurant_seq;
 

@@ -26,7 +26,7 @@ public class Restaurant extends AppHistoryModel {
      * Nom du restaurant.
      */
     @Required
-    public String nom;
+    public String name;
     /**
      * Site internet du restaurant.
      */
@@ -108,11 +108,11 @@ public class Restaurant extends AppHistoryModel {
     /**
      * Représentation de l'objet.
      *
-     * @return le nom du restaurant
+     * @return le name du restaurant
      */
     @Override
     public String toString() {
-        return nom;
+        return name;
     }
 
 }
