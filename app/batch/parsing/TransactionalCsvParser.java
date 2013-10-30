@@ -1,6 +1,5 @@
 package batch.parsing;
 
-import batch.CsvParsingConfiguration;
 import batch.exception.ParsingException;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.EbeanServer;

@@ -8,9 +8,13 @@ import batch.department.DepartmentInseeCsvConfiguration;
 import batch.department.DepartmentPopulator;
 import batch.parsing.CsvParser;
 import batch.parsing.TransactionalCsvParser;
-import batch.region.*;
+import batch.region.RegionInseeCsvConfiguration;
+import batch.region.RegionPopulator;
 import batch.strategy.PopulateStrategy;
 import com.google.common.base.Stopwatch;
+import models.geography.City;
+import models.geography.Department;
+import models.geography.Region;
 import play.Logger;
 import play.Play;
 
@@ -23,28 +27,28 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Karim BENHDECH
  */
-public class ImportGeographiesDataBatch {
+public final class ImportGeographiesDataBatch {
 
     /**
      * Le chemin vers le répertoire des fichiers sources.
      */
-    public static final String SOURCE_DIRECTORY = Play.application().configuration().getString("batch.directory.source");
+    public static String SOURCE_DIRECTORY = Play.application().configuration().getString("batch.directory.source");
     /**
      * Le nom du fichier qui contient les régions de France.
      */
-    public static final String REGIONS_FILE = Play.application().configuration().getString("batch.file.regions");
+    public static String REGIONS_FILE = Play.application().configuration().getString("batch.file.regions");
     /**
      * Le nom du fichier qui contient les départments de France.
      */
-    public static final String DEPARTMENTS_FILE = Play.application().configuration().getString("batch.file.departments");
+    public static String DEPARTMENTS_FILE = Play.application().configuration().getString("batch.file.departments");
     /**
      * Le nom du fichier qui contient la table de correspondance codes insee/postaux.
      */
-    public static final String CODES_FILE = Play.application().configuration().getString("batch.file.codes");
+    public static String CODES_FILE = Play.application().configuration().getString("batch.file.codes");
     /**
      * Le nom du fichier qui contient les communes de France.
      */
-    public static final String CITIES_FILE = Play.application().configuration().getString("batch.file.cities");
+    public static String CITIES_FILE = Play.application().configuration().getString("batch.file.cities");
     /**
      * Cache : zipCode => inseeCode.
      */
@@ -76,7 +80,7 @@ public class ImportGeographiesDataBatch {
                 new RegionPopulator()
         ).execute();
 
-        Logger.info("Régions : " + REGIONS_COUNTER);
+        Logger.info("Nombre de régions récupérées : " + REGIONS_COUNTER);
     }
 
     /**
@@ -89,11 +93,11 @@ public class ImportGeographiesDataBatch {
                 new DepartmentPopulator()
         ).execute();
 
-        Logger.info("Départements : " + DEPARTMENTS_COUNTER);
+        Logger.info("Nombre de départements récupérées : " + DEPARTMENTS_COUNTER);
     }
 
     /**
-     * Traitement de la table de correspondance des codes insee/postal.
+     * Traitement des correspondances entre codes insee et postaux.
      */
     public static void batchCitiesCode() {
         new PopulateStrategy(
@@ -102,7 +106,7 @@ public class ImportGeographiesDataBatch {
                 new CityCodePopulator()
         ).execute();
 
-        Logger.info("Codes postaux : " + ZIPCODE_FIND_COUNTER);
+        Logger.info("Nombre de correspondances (code insee, code postal) récupérées : " + ZIPCODE_FIND_COUNTER);
     }
 
     /**
@@ -115,7 +119,18 @@ public class ImportGeographiesDataBatch {
                 new CityPopulator()
         ).execute();
 
-        Logger.info("Communes : " + CITIES_COUNTER);
+        Logger.info("Nombre de communes récupérées : " + CITIES_COUNTER);
+    }
+
+    /**
+     * Nettoyage des données en mémoire.
+     */
+    public static void clean() {
+        REGIONS_COUNTER = 0;
+        DEPARTMENTS_COUNTER = 0;
+        CITIES_COUNTER = 0;
+        ZIPCODE_FIND_COUNTER = 0;
+        citiesCode.clear();
     }
 
     /**
@@ -128,6 +143,11 @@ public class ImportGeographiesDataBatch {
 
         Logger.info("DEBUT du batch de récupération des données géographiques");
 
+        Logger.info("AVANT EXECUTION EN BASE - Nombre de régions : " + Region.count());
+        Logger.info("AVANT EXECUTION EN BASE - Nombre de départements : " + Department.count());
+        Logger.info("AVANT EXECUTION EN BASE - Nombre de villes : " + City.count());
+        Logger.info("AVANT EXECUTION EN BASE - Nombre de villes avec un code postal : " + City.countWithZipCode());
+
         Logger.info("Traitement de l'import des régions - DEBUT");
         batchRegions();
         Logger.info("Traitement de l'import des régions - FIN");
@@ -136,13 +156,18 @@ public class ImportGeographiesDataBatch {
         batchDepartments();
         Logger.info("Traitement de l'import des départements - FIN");
 
-        Logger.info("Traitement de l'import des codes insee/postaux - DEBUT");
+        Logger.info("Traitement de l'import des correspondances codes insee/postaux - DEBUT");
         batchCitiesCode();
-        Logger.info("Traitement de l'import des codes insee/postaux - FIN");
+        Logger.info("Traitement de l'import des correspondances codes insee/postaux - FIN");
 
         Logger.info("Traitement de l'import des communes - DEBUT");
         batchCities();
         Logger.info("Traitement de l'import des communes - FIN");
+
+        Logger.info("APRES EXECUTION EN BASE - Nombre de régions : " + Region.count());
+        Logger.info("APRES EXECUTION EN BASE - Nombre de départements : " + Department.count());
+        Logger.info("APRES EXECUTION EN BASE - Nombre de villes : " + City.count());
+        Logger.info("APRES EXECUTION EN BASE - Nombre de villes avec un code postal : " + City.countWithZipCode());
 
         Logger.info("FIN du batch de récupération des données géographiques");
 
@@ -150,4 +175,5 @@ public class ImportGeographiesDataBatch {
         Logger.info("Le traitement a duré " + timer.elapsedTime(TimeUnit.SECONDS) + 's');
         timer.stop();
     }
+
 }

@@ -1,6 +1,5 @@
 package batch.parsing;
 
-import batch.CsvParsingConfiguration;
 import batch.exception.ParsingException;
 import batch.strategy.IIntegrationStrategy;
 import org.supercsv.exception.SuperCsvException;

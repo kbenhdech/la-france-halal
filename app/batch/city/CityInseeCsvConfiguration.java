@@ -1,6 +1,6 @@
 package batch.city;
 
-import batch.CsvParsingConfiguration;
+import batch.parsing.CsvParsingConfiguration;
 import org.supercsv.cellprocessor.constraint.NotNull;
 import org.supercsv.cellprocessor.ift.CellProcessor;
 

@@ -75,6 +75,8 @@ public class City extends AppModel {
      */
     public static City findByCode(final String regionCode, final String departmentCode, final String inseeCode) {
         return FIND
+                .fetch("region")
+                .fetch("department")
                 .where()
                 .eq("region.code", regionCode)
                 .eq("department.code", departmentCode)
@@ -83,12 +85,30 @@ public class City extends AppModel {
     }
 
     /**
-     * La liste des villes
+     * La liste des villes.
      *
      * @return La liste des villes
      */
     public static List<City> findAll() {
         return FIND.where().findList();
+    }
+
+    /**
+     * Le nombre de villes en base.
+     *
+     * @return un entier
+     */
+    public static int count() {
+        return FIND.where().findRowCount();
+    }
+
+    /**
+     * Le nombre de villes en base avec un code postal.
+     *
+     * @return un entier
+     */
+    public static int countWithZipCode() {
+        return FIND.where().isNotNull("zipCode").findRowCount();
     }
 
     /**

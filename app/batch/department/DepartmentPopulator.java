@@ -7,42 +7,47 @@ import models.geography.Region;
 import static batch.ImportGeographiesDataBatch.DEPARTMENTS_COUNTER;
 
 /**
- * Populator de l'OME pays.
+ * Populator du département INSEE.
  *
  * @author Karim BENHDECH
  */
 public class DepartmentPopulator implements IPopulator<DepartmentInsee> {
 
     /**
-     *  Pupulate.
+     * Populate.
      *
      * @param departmentInsee un département
      */
     @Override
     public void populate(final DepartmentInsee departmentInsee) {
-        // Conversion du code de la département en Long
         String regionCode = departmentInsee.regionCode;
         String departmentCode = departmentInsee.departmentCode;
         String departmentName = departmentInsee.nccenr;
 
         // On recherche la région en base
-        Region region = Region.findByCode(regionCode);
+        Region regionInDb = Region.findByCode(regionCode);
 
-        // On recherche la département en base
-        Department departmentInDb = Department.findByCode(departmentCode);
+        // Si la région du département n'existe pas
+        // On ne fait rien
+        if (regionInDb != null) {
 
-        // La département
-        Department department = new Department(departmentCode, departmentName, region);
+            // On recherche la département en base
+            Department departmentInDb = Department.findByCode(departmentCode);
 
-        // Sauvegarde ou MAJ selon le cas
-        if (departmentInDb == null) { // Sauvegarde
-            department.save();
-        } else { // MAJ
-            departmentInDb.name = departmentName;
-            departmentInDb.update(departmentInDb.id);
+            // La département
+            Department departmentNew = new Department(departmentCode, departmentName, regionInDb);
+
+            // Sauvegarde ou MAJ selon le cas
+            if (departmentInDb == null) { // Sauvegarde
+                departmentNew.save();
+            } else { // MAJ
+                departmentInDb.name = departmentName; // MAJ du nom (en cas de changement)
+                departmentInDb.region = regionInDb;   // MAJ de la région (en cas de changement)
+                departmentInDb.update(departmentInDb.id);
+            }
+
+            DEPARTMENTS_COUNTER++;
         }
-
-        DEPARTMENTS_COUNTER++;
     }
 
 }

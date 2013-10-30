@@ -81,6 +81,15 @@ public class Region extends AppModel {
     }
 
     /**
+     * Le nombre de régions en base.
+     *
+     * @return un entier
+     */
+    public static int count() {
+        return FIND.where().findRowCount();
+    }
+
+    /**
      * Représentation de l'objet.
      *
      * @return le name de la région

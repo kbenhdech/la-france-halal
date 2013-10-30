@@ -6,7 +6,7 @@ import models.geography.Region;
 import static batch.ImportGeographiesDataBatch.REGIONS_COUNTER;
 
 /**
- * Populator de l'OME pays.
+ * Populator de la région INSEE.
  *
  * @author Karim BENHDECH
  */
@@ -19,7 +19,6 @@ public class RegionPopulator implements IPopulator<RegionInsee> {
      */
     @Override
     public void populate(final RegionInsee regionInsee) {
-        // Conversion du code de la région en Long
         String regionCode = regionInsee.regionCode;
         String regionName = regionInsee.nccenr;
 
@@ -27,12 +26,12 @@ public class RegionPopulator implements IPopulator<RegionInsee> {
         Region regionInDb = Region.findByCode(regionCode);
 
         // La région
-        Region region = new Region(regionCode, regionName);
+        Region regionNew = new Region(regionCode, regionName);
 
         // Sauvegarde ou MAJ selon le cas
         if (regionInDb == null) { // Sauvegarde
-            region.save();
-        } else { // MAJ
+            regionNew.save();
+        } else { // MAJ du nom (en cas de changement)
             regionInDb.name = regionName;
             regionInDb.update(regionInDb.id);
         }

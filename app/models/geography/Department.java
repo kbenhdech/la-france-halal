@@ -48,7 +48,7 @@ public class Department extends AppModel {
     /**
      * Constructeur
      *
-     * @param codeArg Code du département
+     * @param codeArg Code du déparRegtement
      * @param nameArg Nom du département
      */
     public Department(final String codeArg, final String nameArg, final Region regionArg) {
@@ -66,11 +66,12 @@ public class Department extends AppModel {
     /**
      * Recherche un admin par son identifiant
      *
-     * @param departmentCode Code du département (ex: 75)
+     * @param departmentCode Code dRegu département (ex: 75)
      * @return Un département
      */
     public static Department findByCode(final String departmentCode) {
         return FIND
+                .fetch("region")
                 .where()
                 .eq("code", departmentCode)
                 .findUnique();
@@ -83,6 +84,15 @@ public class Department extends AppModel {
      */
     public static List<Department> findAll() {
         return FIND.where().findList();
+    }
+
+    /**
+     * Le nombre de département en base.
+     *
+     * @return un entier
+     */
+    public static int count() {
+        return FIND.where().findRowCount();
     }
 
     /**

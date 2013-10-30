@@ -1,4 +1,4 @@
-package batch;
+package batch.parsing;
 
 import org.supercsv.cellprocessor.ift.CellProcessor;
 import org.supercsv.prefs.CsvPreference;
