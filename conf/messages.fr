@@ -10,3 +10,9 @@ prayerRoom=Salle de prière
 establishmentCertified=Viande certifié
 amenagmentHandicapped=Aménagement pour handicapé
 lastVerification=Dernière vérification
+adresse=Adresse
+codePostal=Code postal
+ville=Ville
+
+constraint.required=Le champ est requis
+error.required=Le champ est requis

@@ -11,6 +11,7 @@
         <dd class="clearfix">@restaurant.name</dd>
         <dt>@Messages("webSite")</dt>
         <dd class="clearfix">@display(restaurant.webSite)</dd>
+
         <dt>@Messages("creditCard")</dt>
         <dd class="clearfix">@display(restaurant.isCreditCardAccepted)</dd>
         <dt>@Messages("restaurantTicket")</dt>
@@ -27,8 +28,16 @@
         <dd class="clearfix">@display(restaurant.isEstablishmentCertified)</dd>
         <dt>@Messages("amenagmentHandicapped")</dt>
         <dd class="clearfix">@display(restaurant.isAmenagmentHandicapped)</dd>
+
         <dt>@Messages("description")</dt>
         <dd class="clearfix">@display(restaurant.description)</dd>
+
+        <dt>@Messages("adresse")</dt>
+        <dd class="clearfix">@display(restaurant.adresse)</dd>
+        <dt>@Messages("codePostal")</dt>
+        <dd class="clearfix">@display(restaurant.codePostal)</dd>
+        <dt>@Messages("ville")</dt>
+        <dd class="clearfix">@display(restaurant.ville)</dd>
     </dl>
 
     <div class="actions">

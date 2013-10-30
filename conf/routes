@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET     /messages.js                controllers.Application.jsMessages()
 
 # Restaurants
 GET           /admin/restaurant                                                            controllers.admin.Restaurants.list()

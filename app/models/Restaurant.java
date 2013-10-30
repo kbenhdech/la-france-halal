@@ -82,6 +82,20 @@ public class Restaurant extends AppHistoryModel {
      */
     @Formats.DateTime(pattern = "dd/MM/yyyy")
     public Date lastVerification;
+    /**
+     * La ville.
+     */
+    public String ville;
+    /**
+     * L'adresse.
+     */
+    public String adresse;
+    /**
+     * Le code postal.
+     */
+    public String codePostal;
+
+    // http://msdn.microsoft.com/en-us/library/gg427624.aspx
 
     /**
      * Recherche un restaurant par son identifiant.

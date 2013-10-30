@@ -19,10 +19,13 @@ object ApplicationBuild extends Build {
     // superCsv
     "net.sf.supercsv" % "super-csv" % "2.1.0",
 
+    // i18n javascripts
+    "com.github.julienrf" %% "play-jsmessages" % "1.5.0",
+
     /*****************************************************************
      *
      *            Webjars
-     *                                                 spin off
+     *
      ****************************************************************/
 
     // webJars
@@ -48,11 +51,12 @@ object ApplicationBuild extends Build {
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here
-
+    // Resolver pour le module i18n javascripts
+    resolvers += "julienrf.github.com" at "http://julienrf.github.com/repo/",
 
     // require.js
-    requireJs += "admin/restaurant.list.js"
+    requireJs += "admin/restaurant.list.js",
+    requireJs += "admin/restaurant.edit.js"
 
     // debug in test
     //, Keys.fork in (Test) := true

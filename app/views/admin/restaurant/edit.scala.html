@@ -8,6 +8,9 @@
 @scripts = {
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.min.js"))' ></script>
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.fr.js"))' ></script>
+
+    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=fr-FR"></script>
+
     @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
                       module = routes.Assets.at("/javascripts/admin/restaurant.edit").url)
 }
@@ -75,6 +78,19 @@
                 '_showConstraints -> false)
         </fieldset>
 
+        <fieldset>
+            <legend>Adresse</legend>
+            @inputText(restaurantForm("adresse"),
+                '_showConstraints -> false)
+            @inputText(restaurantForm("codePostal"),
+                '_showConstraints -> false)
+            @inputText(restaurantForm("ville"),
+                '_showConstraints -> false)
+
+            <div id='map' class="map"></div>
+        </fieldset>
+
+        <br />
         <div class="actions">
             <input type="submit" class="btn btn-primary" value="Valider">
             <a href="@controllers.admin.routes.Restaurants.list()" class="btn btn-warning">Annuler</a>

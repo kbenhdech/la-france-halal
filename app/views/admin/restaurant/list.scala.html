@@ -4,8 +4,10 @@
 
 @scripts = {
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.dataTables.min.js"))' ></script>
-    <script type="text/javascript" src='@routes.Assets.at("javascripts/admin/restaurant.list.js")' ></script>
-    <script type="text/javascript" src='@routes.Assets.at("libs/dataTables/js/DT_bootstrap.js")' ></script>
+    <script type="text/javascript" src='@routes.Assets.at("libs/dataTables/js/DT_bootstrap.js")'></script>
+
+    @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
+        module = routes.Assets.at("/javascripts/admin/restaurant.list").url)
 }
 
 @stylesheets = {

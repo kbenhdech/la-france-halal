@@ -14,8 +14,8 @@
     <div class="col-lg-10">
         @elements.input
     </div>
-    <p class="help-block">@elements.infos(elements.lang).mkString(", ")</p>
+    <p class="help-block col-lg-offset-2 col-lg-10">@elements.infos(elements.lang).mkString(", ")</p>
     @if(elements.hasErrors) {
-    <p class="help-block">@elements.errors(elements.lang).mkString(", ")</p>
+    <p class="help-block col-lg-offset-2 col-lg-10">@elements.errors(elements.lang).mkString(", ")</p>
     }
 </div>
