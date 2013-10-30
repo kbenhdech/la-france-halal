@@ -1,4 +1,4 @@
-package batch.region;
+package batch.department;
 
 import batch.IPopulator;
 import models.geography.Department;

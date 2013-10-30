@@ -1,4 +1,4 @@
-package batch.region;
+package batch.code;
 
 /**
  * Classe utilisée pour l'intégration des codes postaux.

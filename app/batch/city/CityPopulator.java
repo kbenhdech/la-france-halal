@@ -1,4 +1,4 @@
-package batch.region;
+package batch.city;
 
 import batch.IPopulator;
 import batch.ImportGeographiesDataBatch;

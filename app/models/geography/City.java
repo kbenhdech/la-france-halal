@@ -68,7 +68,7 @@ public class City extends AppModel {
     }
 
     /**
-     * Recherche un restaurant par son identifiant
+     * Recherche un admin par son identifiant
      *
      * @param inseeCode Code de la ville
      * @return Une ville

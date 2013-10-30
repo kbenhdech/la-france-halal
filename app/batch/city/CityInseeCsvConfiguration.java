@@ -1,4 +1,4 @@
-package batch.region;
+package batch.city;
 
 import batch.CsvParsingConfiguration;
 import org.supercsv.cellprocessor.constraint.NotNull;

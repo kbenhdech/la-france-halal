@@ -64,7 +64,7 @@ public class Department extends AppModel {
     }
 
     /**
-     * Recherche un restaurant par son identifiant
+     * Recherche un admin par son identifiant
      *
      * @param departmentCode Code du département (ex: 75)
      * @return Un département

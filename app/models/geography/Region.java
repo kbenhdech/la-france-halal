@@ -59,7 +59,7 @@ public class Region extends AppModel {
     }
 
     /**
-     * Recherche un restaurant par son identifiant
+     * Recherche un admin par son identifiant
      *
      * @param regionCode Code de la région (ex: 75)
      * @return Une région

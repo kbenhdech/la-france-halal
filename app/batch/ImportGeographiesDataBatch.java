@@ -1,5 +1,11 @@
 package batch;
 
+import batch.city.CityInseeCsvConfiguration;
+import batch.city.CityPopulator;
+import batch.code.CityCodeCsvConfiguration;
+import batch.code.CityCodePopulator;
+import batch.department.DepartmentInseeCsvConfiguration;
+import batch.department.DepartmentPopulator;
 import batch.parsing.CsvParser;
 import batch.parsing.TransactionalCsvParser;
 import batch.region.*;

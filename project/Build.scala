@@ -55,13 +55,13 @@ object ApplicationBuild extends Build {
     resolvers += "julienrf.github.com" at "http://julienrf.github.com/repo/",
 
     // require.js
-    requireJs += "admin/restaurant.list.js",
-    requireJs += "admin/restaurant.edit.js"
+    requireJs += "admin/admin.list.js",
+    requireJs += "admin/admin.edit.js"
 
     // debug in test
-    //, Keys.fork in (Test) := true
-    //, javaOptions in (Test) += "-Xdebug"
-    //, javaOptions in (Test) += "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9998"
+    , Keys.fork in (Test) := true
+    , javaOptions in (Test) += "-Xdebug"
+    , javaOptions in (Test) += "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9998"
   )
 
 }

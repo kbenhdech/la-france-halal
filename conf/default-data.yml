@@ -1,0 +1,4 @@
+# Restaurants
+restaurants:
+    - !!models.Restaurant &leHadoun
+        name: Hadoun

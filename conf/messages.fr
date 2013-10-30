@@ -16,3 +16,5 @@ ville=Ville
 
 constraint.required=Le champ est requis
 error.required=Le champ est requis
+
+restaurant.h1.create=Création d'un nouveau restaurant

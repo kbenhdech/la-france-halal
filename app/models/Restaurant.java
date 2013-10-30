@@ -11,7 +11,7 @@ import java.util.List;
 import static play.data.validation.Constraints.Required;
 
 /**
- * Modèle du restaurant.
+ * Modèle du admin.
  *
  * @author Karim BENHDECH
  */
@@ -23,16 +23,16 @@ public class Restaurant extends AppHistoryModel {
      */
     private static final Model.Finder<Long, Restaurant> FIND = new Model.Finder<Long, Restaurant>(Long.class, Restaurant.class);
     /**
-     * Nom du restaurant.
+     * Nom du admin.
      */
     @Required
     public String name;
     /**
-     * Site internet du restaurant.
+     * Site internet du admin.
      */
     public String webSite;
     /**
-     * Description du restaurant.
+     * Description du admin.
      */
     @Column(columnDefinition = "varchar(500)")
     public String description;
@@ -42,7 +42,7 @@ public class Restaurant extends AppHistoryModel {
     @Required
     public boolean isCreditCardAccepted = false;
     /**
-     * Les tickets restaurant sont-ils acceptés ?
+     * Les tickets admin sont-ils acceptés ?
      */
     @Required
     public boolean isRestaurantTicketAccepted = false;
@@ -78,7 +78,7 @@ public class Restaurant extends AppHistoryModel {
     @Required
     public boolean isAmenagmentHandicapped = false;
     /**
-     * Dernière date de vérification de l'existance du restaurant.
+     * Dernière date de vérification de l'existance du admin.
      */
     @Formats.DateTime(pattern = "dd/MM/yyyy")
     public Date lastVerification;
@@ -98,10 +98,10 @@ public class Restaurant extends AppHistoryModel {
     // http://msdn.microsoft.com/en-us/library/gg427624.aspx
 
     /**
-     * Recherche un restaurant par son identifiant.
+     * Recherche un admin par son identifiant.
      *
-     * @param restaurantId Identifiant du restaurant.
-     * @return Un restaurant.
+     * @param restaurantId Identifiant du admin.
+     * @return Un admin.
      */
     public static Restaurant findById(final Long restaurantId) {
         return FIND
@@ -122,7 +122,7 @@ public class Restaurant extends AppHistoryModel {
     /**
      * Représentation de l'objet.
      *
-     * @return le name du restaurant
+     * @return le name du admin
      */
     @Override
     public String toString() {

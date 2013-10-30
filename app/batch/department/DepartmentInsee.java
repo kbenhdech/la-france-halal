@@ -1,4 +1,4 @@
-package batch.region;
+package batch.department;
 
 /**
  * Classe utilisée pour l'intégration des départements.

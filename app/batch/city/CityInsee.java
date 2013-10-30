@@ -1,4 +1,4 @@
-package batch.region;
+package batch.city;
 
 /**
  * Classe utilisée pour l'intégration des régions.
