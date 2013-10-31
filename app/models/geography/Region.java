@@ -1,6 +1,7 @@
 package models.geography;
 
 import models.AppModel;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -36,12 +37,14 @@ public class Region extends AppModel {
      */
     @OneToMany(mappedBy = "region")
     @Required
+    @JsonIgnore
     public List<Department> departments;
     /**
      * Une région contient plusieurs villes.
      */
     @OneToMany(mappedBy = "region")
     @Required
+    @JsonIgnore
     public List<City> cities;
 
     /**

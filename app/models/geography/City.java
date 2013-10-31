@@ -1,9 +1,14 @@
 package models.geography;
 
+import com.avaje.ebean.Expr;
 import models.AppModel;
+import models.Restaurant;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.data.validation.Constraints.Required;
@@ -46,6 +51,9 @@ public class City extends AppModel {
     @ManyToOne
     @Required
     public Department department;
+    @OneToMany(mappedBy = "city")
+    @JsonIgnore
+    public List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
     /**
      * Constructeur
@@ -68,10 +76,12 @@ public class City extends AppModel {
     }
 
     /**
-     * Recherche un admin par son identifiant
+     * Recherche une ville par codes.
      *
-     * @param inseeCode Code de la ville
-     * @return Une ville
+     * @param regionCode     Code insee de la région
+     * @param departmentCode Code insee du département
+     * @param inseeCode      Code insee de la ville
+     * @return une ville
      */
     public static City findByCode(final String regionCode, final String departmentCode, final String inseeCode) {
         return FIND
@@ -85,12 +95,45 @@ public class City extends AppModel {
     }
 
     /**
+     * Recherche une ville par son identifiant.
+     *
+     * @param id identifiant
+     * @return Une ville
+     */
+    public static City findById(final Long id) {
+        return FIND
+                .fetch("region")
+                .fetch("department")
+                .where()
+                .eq("id", id)
+                .findUnique();
+    }
+
+    /**
      * La liste des villes.
      *
      * @return La liste des villes
      */
     public static List<City> findAll() {
         return FIND.where().findList();
+    }
+
+    /**
+     * Recherche une ville soit par code postal soit par nom.
+     * Pour l'autocomplete d'un select.
+     *
+     * @param q terme de la recherche
+     * @return une liste de villes
+     */
+    public static List<City> findByTerm(String q) {
+        return FIND
+                .where()
+                .or(
+                        Expr.istartsWith("zipCode", q)
+                        ,
+                        Expr.icontains("name", q)
+                )
+                .findList();
     }
 
     /**

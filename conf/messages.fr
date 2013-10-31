@@ -10,11 +10,18 @@ prayerRoom=Salle de prière
 establishmentCertified=Viande certifié
 amenagmentHandicapped=Aménagement pour handicapé
 lastVerification=Dernière vérification
-adresse=Adresse
-codePostal=Code postal
-ville=Ville
+address=Adresse
+city=Ville
 
 constraint.required=Le champ est requis
 error.required=Le champ est requis
 
 restaurant.h1.create=Création d'un nouveau restaurant
+
+confirm.delete.question=Confirmez-vous la suppression ?
+
+js.customTextarea.maxLength=caractères (Nombre maximal de caractères: {0})
+js.datatable.conf.lang=/assets/libs/dataTables/language/fr_FR.txt
+js.select2.conf.lang=select2_locale_fr.js
+
+js.select2.ville.search=Rechercher une ville

@@ -1,4 +1,4 @@
-@(id: Long, restaurantForm: Form[models.Restaurant])
+@(id: Long, restaurantForm: Form[models.Restaurant], restaurant: Restaurant)
 
 @import helper._
 @import views.html.helper._
@@ -9,6 +9,9 @@
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.min.js"))' ></script>
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.fr.js"))' ></script>
 
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("select2.js"))' ></script>
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate(Messages("js.select2.conf.lang")))' ></script>
+
     <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=fr-FR"></script>
 
     @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
@@ -17,6 +20,8 @@
 
 @stylesheets = {
     <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("datetimepicker.css"))'>
+
+    <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("select2.css"))'>
 }
 
 @main("Restaurant", scripts, stylesheets) {
@@ -80,11 +85,9 @@
 
         <fieldset>
             <legend>Adresse</legend>
-            @inputText(restaurantForm("adresse"),
+            @inputText(restaurantForm("address"),
                 '_showConstraints -> false)
-            @inputText(restaurantForm("codePostal"),
-                '_showConstraints -> false)
-            @inputText(restaurantForm("ville"),
+            @inputText(restaurantForm("city"),
                 '_showConstraints -> false)
 
             <div id='map' class="map"></div>

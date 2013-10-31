@@ -1,8 +1,14 @@
 require ["/assets/javascripts/utils.js"], (utils) ->
 
-  utils.customTextarea("#description")
+  utils.customTextarea("#description", 500)
 
   utils.datetimepickerDay("#lastVerification")
+
+  utils.searchAddress("#city")
+
+
+
+
 
   mapOptions =
     credentials: "AhorfKOW3s3kXvEiKWbRrQ7YAtPxflKiqDca1RZfN3Pfi_ISs_vO84BSW0Swxfjo"
@@ -21,8 +27,10 @@ require ["/assets/javascripts/utils.js"], (utils) ->
   hideInfobox = (e) ->
     pinInfobox.setOptions visible: false
 
+  ###
+
   # Retrieve the location of the map center
-  #center = map.
+  center = map.
 
   # Add a pin to the center of the map
   pin = new Microsoft.Maps.Pushpin(center,
@@ -49,3 +57,4 @@ require ["/assets/javascripts/utils.js"], (utils) ->
     zoomLevel = parseInt(document.getElementById('ville').value);
     map.setView({zoom:zoomLevel});
 
+  ###

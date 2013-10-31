@@ -47,7 +47,10 @@ object ApplicationBuild extends Build {
     "org.webjars" % "font-awesome" % "3.2.1",
 
     // Bootstrap Date Timepicker
-    "org.webjars" % "bootstrap-datetimepicker" % "6aa746736d"
+    "org.webjars" % "bootstrap-datetimepicker" % "6aa746736d",
+
+    // Select2
+    "org.webjars" % "select2" % "3.4.3"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
@@ -59,9 +62,9 @@ object ApplicationBuild extends Build {
     requireJs += "admin/admin.edit.js"
 
     // debug in test
-    , Keys.fork in (Test) := true
-    , javaOptions in (Test) += "-Xdebug"
-    , javaOptions in (Test) += "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9998"
+    //, Keys.fork in (Test) := true
+    //, javaOptions in (Test) += "-Xdebug"
+    //, javaOptions in (Test) += "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9998"
   )
 
 }

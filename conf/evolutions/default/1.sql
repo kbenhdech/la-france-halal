@@ -61,6 +61,8 @@ create table restaurant (
   is_establishment_certified boolean,
   is_amenagment_handicapped boolean,
   last_verification         timestamp,
+  address                   varchar(255),
+  city_id                   bigint,
   created_at                timestamp not null,
   updated_at                timestamp not null,
   constraint pk_restaurant primary key (id))
@@ -82,6 +84,8 @@ alter table city add constraint fk_city_department_2 foreign key (department_id)
 create index ix_city_department_2 on city (department_id);
 alter table department add constraint fk_department_region_3 foreign key (region_id) references region (id) on delete restrict on update restrict;
 create index ix_department_region_3 on department (region_id);
+alter table restaurant add constraint fk_restaurant_city_4 foreign key (city_id) references city (id) on delete restrict on update restrict;
+create index ix_restaurant_city_4 on restaurant (city_id);
 
 
 

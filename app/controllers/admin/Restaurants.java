@@ -1,15 +1,13 @@
 package controllers.admin;
 
 import models.Restaurant;
-import play.Logger;
 import play.data.Form;
-import play.db.ebean.Model;
 import play.mvc.Controller;
 import play.mvc.Result;
-
 import views.html.admin.restaurant.edit;
-import views.html.admin.restaurant.show;
 import views.html.admin.restaurant.list;
+import views.html.admin.restaurant.show;
+
 import java.util.List;
 
 import static play.data.Form.form;
@@ -40,11 +38,11 @@ public class Restaurants extends Controller {
      */
     public static Result edit(final Long id) {
         //find.setAutofetch(true);
-        Restaurant model = Restaurant.findById(id);
-        if (model == null) {
+        Restaurant restaurant = Restaurant.findById(id);
+        if (restaurant == null) {
             return noContent();
         }
-        return ok(edit.render(id, RESTAURANT_FORM.fill(model)));
+        return ok(edit.render(id, RESTAURANT_FORM.fill(restaurant), restaurant));
     }
 
     /**
@@ -53,8 +51,9 @@ public class Restaurants extends Controller {
      * @return vers la page de création.
      */
     public static Result create() {
-        Form<Restaurant> formT = RESTAURANT_FORM.fill(new Restaurant());
-        return ok(edit.render(0L, formT));
+        Restaurant restaurant = new Restaurant();
+        Form<Restaurant> formT = RESTAURANT_FORM.fill(restaurant);
+        return ok(edit.render(0L, formT, restaurant));
     }
 
     /**
@@ -66,7 +65,8 @@ public class Restaurants extends Controller {
     public static Result update(final Long id) {
         Form<Restaurant> updatedForm = RESTAURANT_FORM.bindFromRequest();
         if (updatedForm.hasErrors()) {
-            return badRequest(edit.render(id, updatedForm));
+            Restaurant restaurant = Restaurant.findById(id);
+            return badRequest(edit.render(id, updatedForm, restaurant));
         }
         if (id == 0L) {
             // Création

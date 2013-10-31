@@ -1,28 +1,30 @@
-html,
-body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
+html, body {
+  height: 100%; //The html and body elements cannot have any padding or margin.
 }
 
-  /* Wrapper for page content to push down footer */
+/*
+  Wrapper for page content to push down footer
+*/
 #wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  /* Negative indent footer by it's height */
-  margin: 0 auto -60px;
+  margin: 0 auto -60px; // Negative indent footer by it's height
 }
 
-  /* Set the fixed height of the footer here */
-#push,
-#footer {
+/*
+  Set the fixed height of the footer here
+*/
+#push, #footer {
   height: 60px;
 }
 #footer {
   background-color: #f5f5f5;
 }
 
-  /* Lastly, apply responsive CSS fixes as necessary */
+/*
+  Lastly, apply responsive CSS fixes as necessary
+*/
 @media (max-width: 767px) {
   #footer {
     margin-left: -20px;
@@ -32,15 +34,14 @@ body {
   }
 }
 
-
 .dl-horizontal dt {
 white-space: normal !important;
 }
 
-  /* Custom page CSS
-  -------------------------------------------------- */
-  /* Not required for template or sticky footer method. */
-
+/*
+  Custom page CSS
+  Not required for template or sticky footer method.
+*/
 .container {
   width: auto;
   max-width: 680px;
@@ -49,9 +50,28 @@ white-space: normal !important;
   margin: 20px 0;
 }
 
-
+/*
+  map (bing)
+ */
 .map {
    position: relative;
    height: 350px;
    border:#555555 2px solid;
+}
+
+/*
+  Select2
+  Corrige le problème d'une boîte dans une autre
+  En complément de modifications css
+*/
+.select2-container {
+  padding: 0px;
+  border-width: 0px;
+}
+.select2-container .select2-choice {
+  height: 34px !important;
+  line-height: 34px !important;
+}
+.select2-container.form-control {
+     padding: 0px;
 }

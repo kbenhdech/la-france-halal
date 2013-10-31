@@ -1,6 +1,7 @@
 package models.geography;
 
 import models.AppModel;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -43,6 +44,7 @@ public class Department extends AppModel {
      */
     @OneToMany(mappedBy = "department")
     @Required
+    @JsonIgnore
     public List<City> cities;
 
     /**

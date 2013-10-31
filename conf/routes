@@ -3,8 +3,13 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /messages.js                controllers.Application.jsMessages()
+GET     /                                           controllers.Application.index()
+GET     /assets/javascripts/routes/messages         controllers.Application.jsMessages()
+GET     /assets/javascripts/routes/apis             controllers.Application.jsApis()
+
+# APIs
+GET     /api/address                     controllers.api.AddressesApi.findByTerm(q: String ?= "")
+GET     /api/address/:id                 controllers.api.AddressesApi.findById(id: Long)
 
 # Restaurants
 GET           /admin/restaurant                                                            controllers.admin.Restaurants.list()

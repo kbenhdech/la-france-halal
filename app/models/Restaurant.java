@@ -1,10 +1,12 @@
 package models;
 
+import models.geography.City;
 import play.data.format.Formats;
 import play.db.ebean.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Restaurant extends AppHistoryModel {
      * Finder.
      */
     private static final Model.Finder<Long, Restaurant> FIND = new Model.Finder<Long, Restaurant>(Long.class, Restaurant.class);
+
     /**
      * Nom du admin.
      */
@@ -82,20 +85,17 @@ public class Restaurant extends AppHistoryModel {
      */
     @Formats.DateTime(pattern = "dd/MM/yyyy")
     public Date lastVerification;
-    /**
-     * La ville.
-     */
-    public String ville;
+
     /**
      * L'adresse.
      */
-    public String adresse;
-    /**
-     * Le code postal.
-     */
-    public String codePostal;
+    public String address;
 
-    // http://msdn.microsoft.com/en-us/library/gg427624.aspx
+    /**
+     * La ville.
+     */
+    @ManyToOne
+    public City city;
 
     /**
      * Recherche un admin par son identifiant.
