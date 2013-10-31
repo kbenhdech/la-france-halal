@@ -68,8 +68,18 @@ define [], () ->
             dataType: "json"
             success: (city) ->
               callback(city)
-    # Technique pour corriger un bug d'affichage avec bootstrap3 (box dans une box)
-    # En complément de modifications css
-    $(id).on "change", ->
-      $container = $(this).prev(".select2-container")
-      $container.height $container.children(".select2-choices").height()
+      # Technique pour corriger un bug d'affichage avec bootstrap3 (box dans une box)
+      # En complément de modifications css
+      $(id).on "change", ->
+        $container = $(this).prev(".select2-container")
+        $container.height $container.children(".select2-choices").height()
+
+    @fireActionAfterTime = (id, time, action) ->
+      $(id).bind "input keyup", ->
+        $this = $(this)
+        delay = time # nombre de millisecondes avant de déclencher l'action
+        clearTimeout $this.data("timer")
+        $this.data "timer", setTimeout(->
+          $this.removeData "timer"
+          action()
+        , delay)
