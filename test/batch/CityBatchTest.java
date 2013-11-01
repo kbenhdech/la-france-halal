@@ -5,6 +5,7 @@ import org.junit.Test;
 import play.test.FakeApplication;
 import play.test.Helpers;
 import utils.FakeApplicationConf;
+import utils.YamlDataType;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
@@ -18,7 +19,7 @@ public class CityBatchTest {
 
     @Test
     public void execute() {
-        FakeApplication app = fakeApplication(FakeApplicationConf.defautlConfiguration());
+        FakeApplication app = fakeApplication(FakeApplicationConf.defautlConfiguration(YamlDataType.BATCH));
 
         running(app, new Runnable() {
             public void run() {

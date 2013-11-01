@@ -1,0 +1,35 @@
+# Régions
+regions:
+    - !!models.geography.Region &regionIdf
+        name: IDF
+    - !!models.geography.Region &regionPicardie
+        name: PICARDIE
+    - !!models.geography.Region &regionBasseNormandie
+        name: BASSE-NORMANDIE
+
+
+# Départements
+departments:
+    - !!models.geography.Department &department78
+        code: 78
+        name: Yvelines
+        region: *regionIdf
+    - !!models.geography.Department &department95
+        code: 95
+        name: Val d'oise
+        region: *regionIdf
+
+# Villes
+cities:
+    - !!models.geography.City
+        name: Sartrouville
+        inseeCode: 78000
+        zipCode: 78500
+        region: *regionIdf
+        department: *department78
+    - !!models.geography.City
+        name: Bezons
+        inseeCode: 95052
+        zipCode: 95870
+        region: *regionIdf
+        department: *department95

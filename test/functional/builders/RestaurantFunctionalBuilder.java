@@ -17,7 +17,7 @@ public final class RestaurantFunctionalBuilder {
     public static void create(final TestBrowser browser, final String restoName) {
         customizedGoto(browser, routes.Restaurants.create().url(), Messages.get("restaurant.h1.create"));
         browser.$("input#name").text(restoName);
-        customizedClick(browser, "input[type='submit']", 0, "div.alert-success", Messages.get("generic.update.success"));
+        customizedClick(browser, "input[type='submit']", 0, "div.alert-success", Messages.get("save.success"));
     }
 
 }

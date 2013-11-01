@@ -21,10 +21,11 @@ public class FakeApplicationConf {
     /**
      * Configuration par défaut.
      * Chargement de la conf de test située dans "test/resources/test-application.conf".
+     * Avec possibilité de définir un jeu de données.
      *
      * @return Config de test
      */
-    public static Map<String, String> defautlConfiguration() {
+    public static Map<String, String> defautlConfiguration(final YamlDataType yamlDataType) {
         Map<String, String> conf = new HashMap<String, String>();
         Config config = ConfigFactory.parseFileAnySyntax(new File(
                 "test/resources/application-test-default.conf"));
@@ -34,28 +35,21 @@ public class FakeApplicationConf {
             conf.put(entry.getKey(), value.unwrapped().toString());
         }
         conf.putAll(inMemoryDatabase());
+
+        if (yamlDataType != null) {
+            conf.put("yml.file.path", yamlDataType.path);
+        }
+
         return conf;
     }
 
     /**
-     * Configuration pour les batch.
+     * Configuration par défaut.
      *
      * @return Config de test
      */
-    public static Map<String, String> batchConfiguration() {
-        Map<String, String> conf = defautlConfiguration();
-        conf.put("yml.file.path", "test/batch/resources/data-test-batch.yml");
-        return conf;
+    public static Map<String, String> defautlConfiguration() {
+        return defautlConfiguration(null);
     }
 
-    /**
-     * Configuration pour les tests d'intégrations.
-     *
-     * @return Config de test
-     */
-    public static Map<String, String> integrationConfiguration() {
-        Map<String, String> conf = defautlConfiguration();
-        conf.put("yml.file.path", "test/functional/resources/data-test-functional.yml");
-        return conf;
-    }
 }

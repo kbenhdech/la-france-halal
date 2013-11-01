@@ -13,6 +13,8 @@ lastVerification=Dernière vérification
 address=Adresse
 city=Ville
 
+save.success=Sauvegarde effectuée.
+
 constraint.required=Le champ est requis
 error.required=Le champ est requis
 
@@ -25,3 +27,5 @@ js.datatable.conf.lang=/assets/libs/dataTables/language/fr_FR.txt
 js.select2.conf.lang=select2_locale_fr.js
 
 js.select2.ville.search=Rechercher une ville
+
+error.map.localisation=Localisation non trouvée

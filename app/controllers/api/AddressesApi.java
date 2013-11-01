@@ -28,7 +28,11 @@ public class AddressesApi {
         if (q == null || q.length() < 3) {
             return badRequest("Il doit y avoir 3 caractères minimum pour la recherche.");
         }
+
         List<City> cities = City.findByTerm(q);
+        if (cities == null || cities.size() == 0) {
+            return notFound();
+        }
 
         Collection<AdressAutocomplete> adressAutocompletes = Collections2.transform(cities, new Function<City, AdressAutocomplete>() {
             @Nullable

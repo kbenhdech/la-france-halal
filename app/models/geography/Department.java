@@ -43,7 +43,6 @@ public class Department extends AppModel {
      * Un département contient plusieurs ville.
      */
     @OneToMany(mappedBy = "department")
-    @Required
     @JsonIgnore
     public List<City> cities;
 

@@ -4,6 +4,7 @@ import org.junit.Test;
 import play.test.FakeApplication;
 import play.test.Helpers;
 import utils.FakeApplicationConf;
+import utils.YamlDataType;
 
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class CorrespondanceBatchTest {
 
     @Test
     public void execute() {
-        FakeApplication app = fakeApplication(FakeApplicationConf.defautlConfiguration());
+        FakeApplication app = fakeApplication(FakeApplicationConf.defautlConfiguration(YamlDataType.BATCH));
 
         running(app, new Runnable() {
             public void run() {

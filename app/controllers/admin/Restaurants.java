@@ -2,6 +2,7 @@ package controllers.admin;
 
 import models.Restaurant;
 import play.data.Form;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.admin.restaurant.edit;
@@ -79,7 +80,7 @@ public class Restaurants extends Controller {
             }
             updatedForm.get().update(id);
         }
-        Controller.flash("success", "Sauvegarde effectuée.");
+        Controller.flash("success", Messages.get("save.success"));
         return redirect(controllers.admin.routes.Restaurants.list());
     }
 

@@ -1,21 +1,19 @@
-package functional.utils;
+package utils;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import play.test.FakeApplication;
 import play.test.Helpers;
-import utils.FakeApplicationConf;
+
+import java.util.Map;
 
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.start;
 
 /**
- * Classe à étendre pour tous les tests nécessitant une FakeApplication Play.
- * Configurée pour les tests d'intégrations.
+ * Classe utilitaire pour tous les tests nécessitant une FakeApplication Play.
  *
  * @author Karim BENHDECH
  */
-abstract public class AbstractIntegrationTestSuite {
+public final class FakeApplicationTestSuite {
 
     /**
      * Fake Application.
@@ -24,17 +22,17 @@ abstract public class AbstractIntegrationTestSuite {
 
     /**
      * Démarrage de la Fake Application.
+     *
+     * @param conf la configuration
      */
-    @BeforeClass
-    public static void startApp() {
-        app = fakeApplication(FakeApplicationConf.integrationConfiguration());
+    public static void startApp(final Map<String, String> conf) {
+        app = fakeApplication(conf);
         start(app);
     }
 
     /**
      * Arrêt de la FakeApplication.
      */
-    @AfterClass
     public static void stopApp() {
         Helpers.stop(app);
     }

@@ -36,14 +36,12 @@ public class Region extends AppModel {
      * Une région contient plusieurs départements.
      */
     @OneToMany(mappedBy = "region")
-    @Required
     @JsonIgnore
     public List<Department> departments;
     /**
      * Une région contient plusieurs villes.
      */
     @OneToMany(mappedBy = "region")
-    @Required
     @JsonIgnore
     public List<City> cities;
 
@@ -58,6 +56,9 @@ public class Region extends AppModel {
         this.name = nameArg;
     }
 
+    /**
+     * Constructeur par défaut.
+     */
     public Region() {
     }
 

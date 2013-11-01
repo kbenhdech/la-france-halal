@@ -48,6 +48,7 @@ define [], () ->
       $(id).select2
         placeholder: Messages('js.select2.ville.search')
         minimumInputLength: 3
+        allowClear: true
         ajax:
           url: jsRoutes.controllers.api.AddressesApi.findByTerm().absoluteURL()
           dataType: "json"

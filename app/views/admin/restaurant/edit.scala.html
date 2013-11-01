@@ -85,8 +85,10 @@
 
         <fieldset>
             <legend>Adresse</legend>
+            <div id="errorMapLocalisation" class="text-error"></div>
             @inputText(restaurantForm("address"),
                 '_showConstraints -> false)
+
             @inputText(restaurantForm("city"),
                 '_showConstraints -> false)
 

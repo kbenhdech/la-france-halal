@@ -7,7 +7,7 @@ require ["/assets/javascripts/utils.js"], (utils) ->
   utils.searchAddress("#city")
 
   #################
-  # Map
+  # Map (début)
   #################
 
   # Options d'initialisation de la carte
@@ -27,28 +27,23 @@ require ["/assets/javascripts/utils.js"], (utils) ->
     mapOptions
   )
 
-  # Chargement du module de recherche, notamment par adresse -> point
-  # Appel callback
-  Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: updateMap });
-
-  # Met à jour la carte
-  geocodeCallback = (geocodeResult, userData) ->
+  # Action déclenché après modification de l'adresse ou de la ville
+  # Mais aussi au chargement de la page
+  # appel une fonction de MAJ de la carte
+  updateMap = () ->
+    # Met à jour la carte
+    geocodeCallback = (geocodeResult, userData) ->
       if geocodeResult != null && geocodeResult.results.length > 0
         location = geocodeResult.results[0].location
       if location?
-        alert(location)
         map.setView({ zoom: 15, center: location })
         # Ajout d'un pushpin
         map.entities.clear()
         pushpin = new Microsoft.Maps.Pushpin(location, null)
         map.entities.push pushpin
+        $("#errorMapLocalisation").html("")
       else
-        alert("localisation non trouvée")
-
-  # Action déclenché après modification de l'adresse ou de la ville
-  # Mais aussi au chargement de la page
-  # appel une fonction de MAJ de la carte
-  updateMap = () ->
+        $("#errorMapLocalisation").html(Messages("error.map.localisation"))
     search = new Microsoft.Maps.Search.SearchManager(map)
     address = $("#address").val()
     cityId = $("#city").val()
@@ -58,20 +53,25 @@ require ["/assets/javascripts/utils.js"], (utils) ->
       dataType: "json"
       success: (city) ->
         newAdress = address + ", " + city.name
-        alert(newAdress)
         search.geocode
           where: newAdress
           count: 10
           callback: geocodeCallback
 
+  # Chargement du module de recherche, notamment par adresse -> point
+  # Appel callback
+  Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: updateMap });
+
+  #################
+  # Map (fin)
+  #################
+
   # Event : MAJ de la carte lorsque la ville est modifié
-  $("#city").on(
-    "change"
-  ,
-    updateMap
-  )
+  $("#city").on("change", updateMap)
 
   # Event : MAJ de la carte lorsque l'adresse est modifié (après 2 secondes d'inactivités)
   utils.fireActionAfterTime("#address", 2000, updateMap)
+
+
 
 

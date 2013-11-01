@@ -51,6 +51,9 @@ public class City extends AppModel {
     @ManyToOne
     @Required
     public Department department;
+    /**
+     * Les restaurants présents dans la ville.
+     */
     @OneToMany(mappedBy = "city")
     @JsonIgnore
     public List<Restaurant> restaurants = new ArrayList<Restaurant>();

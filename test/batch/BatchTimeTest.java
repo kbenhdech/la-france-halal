@@ -1,17 +1,5 @@
 package batch;
 
-import org.fest.assertions.Condition;
-import org.junit.Test;
-import play.test.FakeApplication;
-import play.test.Helpers;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.*;
-
 /**
  * Classes de tests du temps réel de traitement.
  * La purge est également testée içi..
@@ -20,6 +8,7 @@ import static play.test.Helpers.*;
  */
 public class BatchTimeTest {
 
+    /*
     @Test
     public void tempsExecution() {
         Map<String, String> conf = new HashMap<String, String>();
@@ -46,5 +35,6 @@ public class BatchTimeTest {
         Helpers.stop(app);
         stop(app);
     }
+    */
 
 }
