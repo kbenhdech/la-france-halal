@@ -14,15 +14,15 @@
     <link rel="stylesheet"  href='@routes.Assets.at("libs/dataTables/css/DT_bootstrap.css")'>
 }
 
-@main("Liste des restaurants", scripts, stylesheets) {
-    <h1>Liste des restaurants</h1>
+@main(Messages("restaurant.list"), scripts, stylesheets) {
+    <h1>@Messages("restaurant.list")</h1>
 
     <div class="row">
         <table id="restaurantTable" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Actions</th>
+                    <th>@Messages("name")</th>
+                    <th>@Messages("actions")</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,10 +33,10 @@
                         @form(controllers.admin.routes.Restaurants.remove(restaurant.id), 'class -> "confirm-delete") {
                         <a href="@controllers.admin.routes.Restaurants.edit(restaurant.id)"
                            class="btn btn-primary btn-sm update"
-                           title="Editer le restaurant '@restaurant.name'">
+                           title='@Messages("restaurant.edit") @restaurant.name'>
                             <i class="icon-pencil icon-white"></i>
                         </a>
-                        <button type="submit" class="btn btn-danger btn-sm delete" title="Supprimer le restaurant '@restaurant.name'">
+                        <button type="submit" class="btn btn-danger btn-sm delete" title='@Messages("restaurant.delete") @restaurant.name'>
                             <i class="icon-trash icon-white"></i>
                         </button>
                         }
@@ -49,8 +49,8 @@
 
     <div class="row">
         <a href="@controllers.admin.routes.Restaurants.create()"
-           class="btn btn-primary btn-lg btn-block create" title="Ajouter un nouveau restaurant">
-            <i class="icon-plus icon-white"></i> Ajouter un nouveau restaurant
+           class="btn btn-primary btn-lg btn-block create" title='@Messages("restaurant.add.new")'>
+            <i class="icon-plus icon-white"></i> @Messages("restaurant.add.new")
         </a>
     </div>
 }

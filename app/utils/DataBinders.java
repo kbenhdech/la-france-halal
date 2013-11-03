@@ -1,6 +1,7 @@
 package utils;
 
 import models.AppModel;
+import models.CookingSpeciality;
 import models.geography.City;
 import play.data.format.Formatters;
 import play.db.ebean.Model;
@@ -30,6 +31,8 @@ public final class DataBinders {
 
         // Ville
         getBasicDataBinder(City.class, new Model.Finder<Long, City>(Long.class, City.class));
+        // Spécialité culinaire
+        getBasicDataBinder(CookingSpeciality.class, new Model.Finder<Long, CookingSpeciality>(Long.class, CookingSpeciality.class));
     }
 
     /**

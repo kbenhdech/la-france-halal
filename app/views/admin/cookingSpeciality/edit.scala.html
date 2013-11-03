@@ -1,0 +1,48 @@
+@(id: Long, csForm: Form[models.CookingSpeciality], cs: CookingSpeciality)
+
+@import helper._
+@import views.html.helper._
+@import enums._
+
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrap3.f)}
+
+@scripts = {
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("select2.js"))' ></script>
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate(Messages("js.select2.conf.lang")))' ></script>
+
+    @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
+        module = routes.Assets.at("/javascripts/admin/cooking-speciality.edit").url)
+}
+
+@stylesheets = {
+    <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("select2.css"))'>
+}
+
+@main(Messages("cookingSpeciality"), scripts, stylesheets) {
+
+    <h1>
+        @Messages("cookingSpeciality") -
+        @if(id==0L){ @Messages("create") } else { @id }
+    </h1>
+
+    @helper.form(action = controllers.admin.routes.CookingSpecialities.update(id)) {
+
+        <div class="boxed span12">
+            <fieldset>
+                @inputText(csForm("name"),
+                    '_showConstraints -> false,
+                    '_class -> "span5")
+
+                @select(csForm("nature"),
+                    options(CookingSpecialityNature.options()))
+            </fieldset>
+        </div>
+
+
+        <div class="actions">
+            <input type="submit" class="btn btn-primary" value='@Messages("validate")'>
+            <a href="@controllers.admin.routes.CookingSpecialities.list()" class="btn btn-warning">@Messages("cancel")</a>
+        </div>
+    }
+
+}

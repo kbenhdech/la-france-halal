@@ -4,16 +4,15 @@ import models.geography.City;
 import play.data.format.Formats;
 import play.db.ebean.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static play.data.validation.Constraints.Required;
 
 /**
- * Modèle du admin.
+ * Modèle du restaurant.
  *
  * @author Karim BENHDECH
  */
@@ -24,18 +23,17 @@ public class Restaurant extends AppHistoryModel {
      * Finder.
      */
     private static final Model.Finder<Long, Restaurant> FIND = new Model.Finder<Long, Restaurant>(Long.class, Restaurant.class);
-
     /**
-     * Nom du admin.
+     * Nom du restaurant.
      */
     @Required
     public String name;
     /**
-     * Site internet du admin.
+     * Site internet du restaurant.
      */
     public String webSite;
     /**
-     * Description du admin.
+     * Description du restaurant.
      */
     @Column(columnDefinition = "varchar(500)")
     public String description;
@@ -45,7 +43,7 @@ public class Restaurant extends AppHistoryModel {
     @Required
     public boolean isCreditCardAccepted = false;
     /**
-     * Les tickets admin sont-ils acceptés ?
+     * Les tickets restaurant sont-ils acceptés ?
      */
     @Required
     public boolean isRestaurantTicketAccepted = false;
@@ -81,27 +79,34 @@ public class Restaurant extends AppHistoryModel {
     @Required
     public boolean isAmenagmentHandicapped = false;
     /**
-     * Dernière date de vérification de l'existance du admin.
+     * Dernière date de vérification de l'existance du restaurant.
      */
     @Formats.DateTime(pattern = "dd/MM/yyyy")
     public Date lastVerification;
-
     /**
      * L'adresse.
      */
     public String address;
-
     /**
      * La ville.
      */
     @ManyToOne
     public City city;
+    /**
+     * Un restaurant peut avoir plussieurs spécialités culinaires.
+     */
+    @ManyToMany
+    @JoinTable(
+            name = "restaurant_cooking_speciality",
+            joinColumns = {@JoinColumn(name = "restaurant_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "cooking_speciality_id", referencedColumnName = "id")})
+    public List<CookingSpeciality> cookingSpecialities = new ArrayList<CookingSpeciality>();
 
     /**
-     * Recherche un admin par son identifiant.
+     * Recherche un restaurant par son identifiant.
      *
-     * @param restaurantId Identifiant du admin.
-     * @return Un admin.
+     * @param restaurantId Identifiant du restaurant.
+     * @return Un restaurant.
      */
     public static Restaurant findById(final Long restaurantId) {
         return FIND
@@ -122,7 +127,7 @@ public class Restaurant extends AppHistoryModel {
     /**
      * Représentation de l'objet.
      *
-     * @return le name du admin
+     * @return le nom du restaurant
      */
     @Override
     public String toString() {

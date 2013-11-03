@@ -1,13 +1,14 @@
 package controllers.admin;
 
-import models.Restaurant;
+import models.CookingSpeciality;
+import models.CookingSpeciality;
 import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.admin.restaurant.edit;
-import views.html.admin.restaurant.list;
-import views.html.admin.restaurant.show;
+import views.html.admin.cookingSpeciality.edit;
+import views.html.admin.cookingSpeciality.list;
+import views.html.admin.cookingSpeciality.show;
 
 import java.util.List;
 
@@ -15,11 +16,13 @@ import static play.data.Form.form;
 
 
 /**
+ * Controller des spécialités culinaires.
+ * 
  * @author Karim BENHDECH
  */
-public class Restaurants extends Controller {
+public class CookingSpecialities extends Controller {
 
-    private static final Form<Restaurant> RESTAURANT_FORM = form(Restaurant.class);
+    private static final Form<CookingSpeciality> COOKING_SPECIALITY_FORM = form(CookingSpeciality.class);
 
     /**
      * Affichage de la liste de modèles..
@@ -27,7 +30,7 @@ public class Restaurants extends Controller {
      * @return vers la liste.
      */
     public static Result list() {
-        List<Restaurant> results = Restaurant.findAll();
+        List<CookingSpeciality> results = CookingSpeciality.findAll();
         return ok(list.render(results));
     }
 
@@ -38,11 +41,11 @@ public class Restaurants extends Controller {
      * @return vers la page d'edit.
      */
     public static Result edit(final Long id) {
-        Restaurant restaurant = Restaurant.findById(id);
-        if (restaurant == null) {
+        CookingSpeciality cs = CookingSpeciality.findById(id);
+        if (cs == null) {
             return noContent();
         }
-        return ok(edit.render(id, RESTAURANT_FORM.fill(restaurant), restaurant));
+        return ok(edit.render(id, COOKING_SPECIALITY_FORM.fill(cs), cs));
     }
 
     /**
@@ -51,9 +54,9 @@ public class Restaurants extends Controller {
      * @return vers la page de création.
      */
     public static Result create() {
-        Restaurant restaurant = new Restaurant();
-        Form<Restaurant> formT = RESTAURANT_FORM.fill(restaurant);
-        return ok(edit.render(0L, formT, restaurant));
+        CookingSpeciality cs = new CookingSpeciality();
+        Form<CookingSpeciality> formT = COOKING_SPECIALITY_FORM.fill(cs);
+        return ok(edit.render(0L, formT, cs));
     }
 
     /**
@@ -63,24 +66,24 @@ public class Restaurants extends Controller {
      * @return vers la liste si ok, on reste sur la page sinon.
      */
     public static Result update(final Long id) {
-        Form<Restaurant> updatedForm = RESTAURANT_FORM.bindFromRequest();
+        Form<CookingSpeciality> updatedForm = COOKING_SPECIALITY_FORM.bindFromRequest();
         if (updatedForm.hasErrors()) {
-            Restaurant restaurant = Restaurant.findById(id);
-            return badRequest(edit.render(id, updatedForm, restaurant));
+            CookingSpeciality cs = CookingSpeciality.findById(id);
+            return badRequest(edit.render(id, updatedForm, cs));
         }
         if (id == 0L) {
             // Création
             updatedForm.get().save();
         } else {
             // Mise à jour
-            Restaurant model = Restaurant.findById(id);
+            CookingSpeciality model = CookingSpeciality.findById(id);
             if (model == null) {
                 return noContent();
             }
             updatedForm.get().update(id);
         }
         Controller.flash("success", Messages.get("save.success"));
-        return redirect(controllers.admin.routes.Restaurants.list());
+        return redirect(routes.CookingSpecialities.list());
     }
 
     /**
@@ -90,7 +93,7 @@ public class Restaurants extends Controller {
      * @return vers la liste si ok, on reste sur la page sinon.
      */
     public static Result remove(final Long id) {
-        Restaurant model = Restaurant.findById(id);
+        CookingSpeciality model = CookingSpeciality.findById(id);
         if (model == null) {
             Controller.flash("error", "Ce modèle n'existe pas.");
             return noContent();
@@ -98,7 +101,7 @@ public class Restaurants extends Controller {
 
         model.delete();
         Controller.flash("success", "Suppression effectuée.");
-        return redirect(controllers.admin.routes.Restaurants.list());
+        return redirect(routes.CookingSpecialities.list());
     }
 
     /**
@@ -108,7 +111,7 @@ public class Restaurants extends Controller {
      * @return vers la page de détails
      */
     public static Result show(final Long id) {
-        Restaurant model = Restaurant.findById(id);
+        CookingSpeciality model = CookingSpeciality.findById(id);
         if (model == null) {
             Controller.flash("error", "Ce modèle n'existe pas.");
             return noContent();

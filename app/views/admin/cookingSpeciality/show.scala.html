@@ -1,0 +1,20 @@
+@(cs: models.CookingSpeciality)
+
+@import helper._
+@import views.html.helper._
+
+@main(Messages("cookingSpeciality") + " : " + cs.name) {
+<h1>@Messages("cookingSpeciality") - @cs.name</h1>
+
+<dl class="row dl-horizontal">
+    <dt>@Messages("name")</dt>
+    <dd class="clearfix">@display(cs.name)</dd>
+    <dt>@Messages("nature")</dt>
+    <dd class="clearfix">@display(cs.nature.name)</dd>
+</dl>
+
+<div class="actions">
+    <a href="@controllers.admin.routes.CookingSpecialities.list()" class="btn btn-warning">@Messages("return")</a>
+</div>
+
+}

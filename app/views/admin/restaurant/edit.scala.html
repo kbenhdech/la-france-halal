@@ -12,7 +12,7 @@
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("select2.js"))' ></script>
     <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate(Messages("js.select2.conf.lang")))' ></script>
 
-    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=fr-FR"></script>
+    <script type="text/javascript" src='http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=Messages("js.bing.map.lang"))' charset="UTF-8" ></script>
 
     @helper.requireJs(core = routes.Assets.at("javascripts/require.js").url,
                       module = routes.Assets.at("/javascripts/admin/restaurant.edit").url)
@@ -25,14 +25,20 @@
 }
 
 @main("Restaurant", scripts, stylesheets) {
-    <h1>@if(id==0L){ @Messages("restaurant.h1.create") } else { Modification d'un restaurant existant (@id) }</h1>
+    <h1>
+        @if(id==0L){
+            @Messages("restaurant.h1.create")
+        } else {
+            @Messages("restaurant.h1.update", id)
+        }
+    </h1>
 
     @helper.form(action = controllers.admin.routes.Restaurants.update(id), 'class -> "form-horizontal") {
 
         <input type="hidden" name="id" id="id" value="@id">
 
         <fieldset>
-            <legend>Données primaires</legend>
+            <legend>@Messages("restaurant.legend.data.primary")</legend>
             @inputText(restaurantForm("name"),
                 '_showConstraints -> false)
             @inputText(restaurantForm("webSite"),
@@ -43,7 +49,7 @@
         </fieldset>
 
         <fieldset>
-            <legend>Données secondaires</legend>
+            <legend>@Messages("restaurant.legend.data.secondary")</legend>
             @checkbox(restaurantForm("isCreditCardAccepted"),
                 '_showConstraints -> false,
                 '_label -> Messages("creditCard"))
@@ -78,13 +84,21 @@
         </fieldset>
 
         <fieldset>
-            <legend>Dates</legend>
+            <legend>@Messages("restaurant.legend.date")</legend>
             @inputText(restaurantForm("lastVerification"),
                 '_showConstraints -> false)
         </fieldset>
 
         <fieldset>
-            <legend>Adresse</legend>
+            <legend>@Messages("cookingSpecialities")</legend>
+            @multiselect(
+                restaurantForm("cookingSpecialities"),
+                options(CookingSpeciality.options()),
+                '_showConstraints -> false)
+        </fieldset>
+
+        <fieldset>
+            <legend>@Messages("restaurant.legend.address")</legend>
             <div id="errorMapLocalisation" class="text-error"></div>
             @inputText(restaurantForm("address"),
                 '_showConstraints -> false)
@@ -97,8 +111,8 @@
 
         <br />
         <div class="actions">
-            <input type="submit" class="btn btn-primary" value="Valider">
-            <a href="@controllers.admin.routes.Restaurants.list()" class="btn btn-warning">Annuler</a>
+            <input type="submit" class="btn btn-primary" value='@Messages("validate")'>
+            <a href="@controllers.admin.routes.Restaurants.list()" class="btn btn-warning">@Messages("cancel")</a>
         </div>
     }
 }

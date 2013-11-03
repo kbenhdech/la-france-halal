@@ -1,0 +1,55 @@
+@(css: List[models.CookingSpeciality])
+
+@import helper._
+
+@scripts = {
+    <script type="text/javascript" src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.dataTables.min.js"))' ></script>
+    <script type="text/javascript" src='@routes.Assets.at("libs/dataTables/js/DT_bootstrap.js")'></script>
+}
+
+@stylesheets = {
+    <link rel="stylesheet"  href='@routes.Assets.at("libs/dataTables/css/DT_bootstrap.css")'>
+}
+
+@main(Messages("cookingSpeciality.list"), scripts, stylesheets) {
+<h1>@Messages("cookingSpeciality.list")</h1>
+
+<div class="row">
+    <table id="csTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>@Messages("name")</th>
+                <th>@Messages("nature")</th>
+                <th>@Messages("actions")</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for( cs <- css){
+            <tr id="@cs.name">
+                <td>@cs.name</td>
+                <td>@cs.nature.name</td>
+                <td>
+                    @form(controllers.admin.routes.CookingSpecialities.remove(cs.id), 'class -> "confirm-delete") {
+                    <a href="@controllers.admin.routes.CookingSpecialities.edit(cs.id)"
+                       class="btn btn-primary btn-sm update"
+                       title='@Messages("cookingSpeciality.edit") "@cs.name"'>
+                        <i class="icon-pencil icon-white"></i>
+                    </a>
+                    <button type="submit" class="btn btn-danger btn-sm delete" title='@Messages("cookingSpeciality.delete") "@cs.name"'>
+                        <i class="icon-trash icon-white"></i>
+                    </button>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <a href="@controllers.admin.routes.CookingSpecialities.create()"
+       class="btn btn-primary btn-lg btn-block create" title='@Messages("cookingSpeciality.add.new")'>
+        <i class="icon-plus icon-white"></i> @Messages("cookingSpeciality.add.new")
+    </a>
+</div>
+}

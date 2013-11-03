@@ -19,6 +19,14 @@ GET           /admin/restaurant/:id/edit                                        
 POST          /admin/restaurant/:id/edit                                                   controllers.admin.Restaurants.update(id: Long)
 GET           /admin/restaurant/:id                                                        controllers.admin.Restaurants.show(id: Long)
 
+# Spécialités culinaires
+GET           /admin/specialite-culinaire                                                            controllers.admin.CookingSpecialities.list()
+GET           /admin/specialite-culinaire/new                                                        controllers.admin.CookingSpecialities.create()
+POST          /admin/specialite-culinaire/:id/remove                                                 controllers.admin.CookingSpecialities.remove(id: Long)
+GET           /admin/specialite-culinaire/:id/edit                                                   controllers.admin.CookingSpecialities.edit(id: Long)
+POST          /admin/specialite-culinaire/:id/edit                                                   controllers.admin.CookingSpecialities.update(id: Long)
+GET           /admin/specialite-culinaire/:id                                                        controllers.admin.CookingSpecialities.show(id: Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 

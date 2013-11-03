@@ -75,6 +75,10 @@ define [], () ->
         $container = $(this).prev(".select2-container")
         $container.height $container.children(".select2-choices").height()
 
+    @select2 = (id) ->
+      $(id).select2
+        allowClear: true
+
     @fireActionAfterTime = (id, time, action) ->
       $(id).bind "input keyup", ->
         $this = $(this)

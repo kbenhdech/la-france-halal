@@ -15,6 +15,16 @@ create table city (
   constraint pk_city primary key (id))
 ;
 
+create table cooking_speciality (
+  id                        bigint not null,
+  name                      varchar(255),
+  nature                    integer,
+  created_at                timestamp not null,
+  updated_at                timestamp not null,
+  constraint ck_cooking_speciality_nature check (nature in (0,1)),
+  constraint pk_cooking_speciality primary key (id))
+;
+
 create table department (
   id                        bigint not null,
   code                      varchar(255),
@@ -68,7 +78,15 @@ create table restaurant (
   constraint pk_restaurant primary key (id))
 ;
 
+
+create table restaurant_cooking_speciality (
+  cooking_speciality_id          bigint not null,
+  restaurant_id                  bigint not null,
+  constraint pk_restaurant_cooking_speciality primary key (cooking_speciality_id, restaurant_id))
+;
 create sequence city_seq;
+
+create sequence cooking_speciality_seq;
 
 create sequence department_seq;
 
@@ -89,11 +107,19 @@ create index ix_restaurant_city_4 on restaurant (city_id);
 
 
 
+alter table restaurant_cooking_speciality add constraint fk_restaurant_cooking_special_01 foreign key (cooking_speciality_id) references cooking_speciality (id) on delete restrict on update restrict;
+
+alter table restaurant_cooking_speciality add constraint fk_restaurant_cooking_special_02 foreign key (restaurant_id) references restaurant (id) on delete restrict on update restrict;
+
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists city;
+
+drop table if exists cooking_speciality;
+
+drop table if exists restaurant_cooking_speciality;
 
 drop table if exists department;
 
@@ -106,6 +132,8 @@ drop table if exists restaurant;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists city_seq;
+
+drop sequence if exists cooking_speciality_seq;
 
 drop sequence if exists department_seq;
 

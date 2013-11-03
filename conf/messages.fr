@@ -1,3 +1,7 @@
+##########################################################
+#   LABELS GENERIQUES
+##########################################################
+
 name=Nom
 webSite=Site internet
 description=Description
@@ -12,20 +16,68 @@ amenagmentHandicapped=Aménagement pour handicapé
 lastVerification=Dernière vérification
 address=Adresse
 city=Ville
+restaurant=Restaurant
+restaurants=Restaurants
+validate=Valider
+create=Création
+nature=Nature
+actions=Actions
 
 save.success=Sauvegarde effectuée.
+confirm.delete.question=Confirmez-vous la suppression ?
+
+cancel=Annuler
+return=Retour
+
+##########################################################
+#   ERREURS / CONTRAINTES
+##########################################################
 
 constraint.required=Le champ est requis
 error.required=Le champ est requis
 
+
+error.map.localisation=Localisation non trouvée
+
+##########################################################
+#   RESTAURANTS
+##########################################################
+
 restaurant.h1.create=Création d'un nouveau restaurant
+restaurant.h1.update=Modification d'un restaurant existant ({0})
 
-confirm.delete.question=Confirmez-vous la suppression ?
+restaurant.legend.data.primary=Données primaires
+restaurant.legend.data.secondary=Données secondaires
+restaurant.legend.date=Dates
+restaurant.legend.address=Adresse
+restaurant.list=Liste des restaurants
 
+restaurant.add.new=Ajouter une nouveau restaurant
+restaurant.delete=Supprimer le restaurant
+restaurant.edit=Editer le restaurant
+
+##########################################################
+#   SPECIALITES CULINAIRES
+##########################################################
+
+cookingSpeciality.h1.create=Création d'une nouvelle spécialité culinaire
+cookingSpeciality=Spécialité culinaire
+cookingSpecialities=Spécialités culinaires
+cookingSpeciality.list=Liste des spécialités culinaires
+
+cookingSpeciality.add.new=Ajouter une nouvelle spécialité
+cookingSpeciality.delete=Supprimer la spécialité
+cookingSpeciality.edit=Editer la spécialité
+
+cookingSpecialityNature.type=Type
+cookingSpecialityNature.country=Pays
+
+##########################################################
+#   JAVASCRIPTS
+##########################################################
+
+js.bing.map.lang=fr-FR\
 js.customTextarea.maxLength=caractères (Nombre maximal de caractères: {0})
 js.datatable.conf.lang=/assets/libs/dataTables/language/fr_FR.txt
 js.select2.conf.lang=select2_locale_fr.js
-
 js.select2.ville.search=Rechercher une ville
-
-error.map.localisation=Localisation non trouvée

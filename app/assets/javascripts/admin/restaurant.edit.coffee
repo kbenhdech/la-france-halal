@@ -6,6 +6,8 @@ require ["/assets/javascripts/utils.js"], (utils) ->
 
   utils.searchAddress("#city")
 
+  utils.select2("#cookingSpecialities")
+
   #################
   # Map (début)
   #################

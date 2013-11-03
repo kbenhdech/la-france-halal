@@ -59,7 +59,8 @@ object ApplicationBuild extends Build {
 
     // require.js
     requireJs += "admin/admin.list.js",
-    requireJs += "admin/admin.edit.js"
+    requireJs += "admin/admin.edit.js",
+    requireJs += "admin/cooking-speciality.edit.js"
 
     // debug in test
     //, Keys.fork in (Test) := true
